@@ -33,7 +33,7 @@ public class DicomIdentifier : IEquatable<DicomIdentifier>
 
     public string SopInstanceUid { get; }
 
-    private DicomIdentifier(string studyInstanceUid, string seriesInstanceUid, string sopInstanceUid)
+    protected DicomIdentifier(string studyInstanceUid, string seriesInstanceUid, string sopInstanceUid)
     {
         StudyInstanceUid = EnsureArg.IsNotNullOrWhiteSpace(studyInstanceUid, nameof(studyInstanceUid));
         SeriesInstanceUid = seriesInstanceUid;

@@ -30,6 +30,7 @@ namespace Microsoft.Health.Dicom.Api.Controllers;
 [ApiVersion("1.0-prerelease")]
 [ApiVersion("1")]
 [ServiceFilter(typeof(DicomAudit.AuditLoggingFilterAttribute))]
+[ServiceFilter(typeof(PopulateDataPartitionFilterAttribute))]
 public class ExportController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -56,6 +57,8 @@ public class ExportController : ControllerBase
     [Consumes(KnownContentTypes.ApplicationJson)]
     [ProducesResponseType(typeof(ExportIdentifiersResponse), (int)HttpStatusCode.Accepted)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [VersionedPartitionRoute(KnownRoutes.ExportRoute)]
+    [PartitionRoute(KnownRoutes.ExportRoute)]
     [VersionedRoute(KnownRoutes.ExportRoute)]
     [Route(KnownRoutes.ExportRoute)]
     [AuditEventType(AuditEventSubType.Export)]
